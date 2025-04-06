@@ -28,7 +28,6 @@ class Comment(db.Model):
     author_id: Mapped[int] = mapped_column(ForeignKey("user.id"), nullable=False)
     post_id: Mapped[int] = mapped_column(ForeignKey("post.id"), nullable=False)
 
-    # Relaciones
     author = relationship("User", backref="comments")
     post = relationship("Post", backref="comments")
 
@@ -39,7 +38,6 @@ class Media(db.Model):
 
     post_id: Mapped[int] = mapped_column(ForeignKey("post.id"), nullable=False)
 
-    # Relación con Post
     post = relationship("Post", backref="media")
 
 
@@ -49,7 +47,6 @@ class Follower(db.Model):
     user_from_id: Mapped[int] = mapped_column(ForeignKey("user.id"), nullable=False)
     user_to_id: Mapped[int] = mapped_column(ForeignKey("user.id"), nullable=False)
 
-    # Relaciones
     follower = relationship("User", foreign_keys=[user_from_id], backref="following")
     followed = relationship("User", foreign_keys=[user_to_id], backref="followers")
 
